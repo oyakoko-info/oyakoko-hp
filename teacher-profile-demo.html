@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>先生のプロフィール | オヤココ</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #f6f9f4;
+      color: #29372e;
+      font-family: -apple-system, BlinkMacSystemFont,
+        "Hiragino Kaku Gothic ProN", sans-serif;
+      line-height: 1.7;
+    }
+    header {
+      background: #fff;
+      border-bottom: 1px solid #e4ebe2;
+      padding: 18px;
+      text-align: center;
+      color: #278075;
+      font-weight: bold;
+      font-size: 22px;
+    }
+    main {
+      max-width: 760px;
+      margin: 28px auto;
+      padding: 0 16px 40px;
+    }
+    .notice {
+      background: #fff5df;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-size: 13px;
+      margin-bottom: 18px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #e5ebe4;
+      border-radius: 22px;
+      padding: 26px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 18px #213b2810;
+    }
+    .hero {
+      text-align: center;
+      background: linear-gradient(135deg, #e7f7ee, #f1f9ff);
+    }
+    .avatar {
+      width: 108px;
+      height: 108px;
+      border-radius: 50%;
+      background: #fff;
+      display: grid;
+      place-items: center;
+      margin: 0 auto 10px;
+      font-size: 64px;
+    }
+    h1 { margin: 4px 0; font-size: 28px; }
+    h2 {
+      font-size: 19px;
+      margin: 0 0 14px;
+      color: #278075;
+    }
+    .sub { color: #68766e; font-size: 13px; }
+    .message {
+      margin-top: 18px;
+      font-size: 17px;
+      font-weight: bold;
+    }
+    .info {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .item {
+      background: #f7faf7;
+      border-radius: 12px;
+      padding: 13px;
+      overflow-wrap: anywhere;
+    }
+    .label {
+      font-size: 12px;
+      color: #68766e;
+      margin-bottom: 4px;
+    }
+    .value { font-weight: 600; }
+    .story {
+      padding: 12px 0;
+      border-bottom: 1px solid #edf1eb;
+      white-space: pre-wrap;
+    }
+    .story:last-child { border-bottom: 0; }
+    .back {
+      display: block;
+      text-align: center;
+      padding: 14px;
+      border-radius: 12px;
+      background: #278075;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    @media (max-width: 480px) {
+      .info { grid-template-columns: 1fr; }
+      .card { padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+  <header>🐼 オヤココ 先生のプロフィール</header>
+  <main>
+    <div class="notice">
+      🐢 これは画面見本です。表示内容は架空のサンプルです。
+      実際の講師情報ではありません。
+    </div>
+
+    <section class="card hero">
+      <div class="avatar" id="avatar"></div>
+      <h1 id="name"></h1>
+      <div class="sub" id="teacherId"></div>
+      <div class="message" id="message"></div>
+    </section>
+
+    <section class="card" id="basicCard">
+      <h2>📚 先生のことを知ろう！</h2>
+      <div class="info" id="basicInfo"></div>
+    </section>
+
+    <section class="card" id="funCard">
+      <h2>🎮 もっと先生を知りたい！</h2>
+      <div id="funInfo"></div>
+    </section>
+
+    <section class="card" id="lessonCard">
+      <h2>🌱 勉強について</h2>
+      <div id="lessonInfo"></div>
+    </section>
+
+    <section class="card" id="helloCard">
+      <h2>💌 小学生のみんなへ</h2>
+      <div id="helloInfo"></div>
+    </section>
+
+    <a class="back" href="teacher-room-demo.html">
+      ← 講師マイルームに戻る
+    </a>
+  </main>
+
+  <script>
+    // ここを将来、講師登録フォームの公開用データに置き換えます。
+    // 空欄にした任意項目は画面に表示されません。
+    const teacher = {
+      icon: "🐢",
+      name: "サンプル先生",
+      id: "DEMO",
+      message: "わからないことも、一緒に楽しく考えよう！",
+
+      university: "信州大学（サンプル）",
+      grade: "大学2年生",
+      subjects: "算数・国語",
+      nickname: "かめ先生",
+
+      favoriteAnimal: "カメ",
+      favoriteFood: "オムライス",
+      hobbies: "ゲーム・音楽",
+      favoriteGame: "",
+      childhoodDream: "宇宙飛行士",
+
+      teachingStyle: "ゆっくり、一緒に考える授業",
+      childhoodChallenge: "小学生のころ、文章題が苦手でした。",
+      favoriteSchoolMemory: "",
+
+      hello: "何回質問しても大丈夫！一緒にできた！を増やそう。"
+    };
+
+    const hasValue = value =>
+      value !== null &&
+      value !== undefined &&
+      String(value).trim() !== "";
+
+    document.getElementById("avatar").textContent =
+      teacher.icon || "🐼";
+    document.getElementById("name").textContent =
+      teacher.name || "先生";
+    document.getElementById("teacherId").textContent =
+      teacher.id ? "講師ID：" + teacher.id : "";
+    document.getElementById("message").textContent =
+      teacher.message || "";
+
+    function addBasic(label, value) {
+      if (!hasValue(value)) return;
+      const item = document.createElement("div");
+      item.className = "item";
+
+      const title = document.createElement("div");
+      title.className = "label";
+      title.textContent = label;
+
+      const content = document.createElement("div");
+      content.className = "value";
+      content.textContent = value;
+
+      item.append(title, content);
+      document.getElementById("basicInfo").append(item);
+    }
+
+    function addStory(targetId, label, value) {
+      if (!hasValue(value)) return;
+
+      const item = document.createElement("div");
+      item.className = "story";
+
+      const title = document.createElement("div");
+      title.className = "label";
+      title.textContent = label;
+
+      const content = document.createElement("div");
+      content.textContent = value;
+
+      item.append(title, content);
+      document.getElementById(targetId).append(item);
+    }
+
+    addBasic("大学", teacher.university);
+    addBasic("学年", teacher.grade);
+    addBasic("得意科目", teacher.subjects);
+    addBasic("呼んでほしい名前", teacher.nickname);
+
+    addStory("funInfo", "🐾 好きな動物", teacher.favoriteAnimal);
+    addStory("funInfo", "🍙 好きな食べ物", teacher.favoriteFood);
+    addStory("funInfo", "🎨 趣味・好きなこと", teacher.hobbies);
+    addStory("funInfo", "🎮 好きなゲーム", teacher.favoriteGame);
+    addStory("funInfo", "🌟 子どものころの夢", teacher.childhoodDream);
+
+    addStory("lessonInfo", "✏️ 得意な教え方", teacher.teachingStyle);
+    addStory("lessonInfo", "💪 小学生のころ苦手だったこと",
+      teacher.childhoodChallenge);
+    addStory("lessonInfo", "🏫 学校での思い出",
+      teacher.favoriteSchoolMemory);
+
+    addStory("helloInfo", "先生からのメッセージ", teacher.hello);
+
+    ["basic", "fun", "lesson", "hello"].forEach(section => {
+      const content = document.getElementById(section + "Info");
+      const card = document.getElementById(section + "Card");
+      if (!content.children.length) card.style.display = "none";
+    });
+  </script>
+</body>
+</html>
