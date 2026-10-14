@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>先生を選ぶ | オヤココ</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#f7f9f5;color:#26352b;font-family:-apple-system,BlinkMacSystemFont,"Hiragino Kaku Gothic ProN",sans-serif}
+header{background:white;padding:22px;text-align:center;border-bottom:1px solid #e5e9e2}
+header h1{margin:0;font-size:25px}
+header p{margin:8px 0 0;color:#66766a}
+main{max-width:950px;margin:auto;padding:32px 18px}
+h2{text-align:center;font-size:23px}
+.intro{text-align:center;color:#66766a}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px;margin-top:30px}
+.card{background:white;border:1px solid #e5e9e2;border-radius:20px;padding:24px;text-align:center;box-shadow:0 5px 18px #00000008}
+.animal{font-size:76px;background:#eef7ec;border-radius:18px;padding:20px}
+.card h3{margin:18px 0 5px}
+.small{color:#718075;font-size:13px}
+.status{display:inline-block;background:#edf7ee;color:#367448;padding:6px 13px;border-radius:20px;font-size:13px;margin:15px 0}
+.pending{background:#fff3df;color:#916b28}
+button{border:0;border-radius:12px;background:#357b59;color:white;padding:12px 20px;font-size:15px}
+button:disabled{background:#d7ded8;color:#66766a}
+footer{text-align:center;padding:25px;color:#718075;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+<h1>🐼 オヤココ</h1>
+<p>先生を選ぼう！</p>
+</header>
+<main>
+<h2>大学生のお兄ちゃん・お姉ちゃんを探そう</h2>
+<p class="intro">気になる先生のプロフィールを見てみよう！</p>
+<div class="cards">
+<section class="card">
+<div class="animal">🐼</div>
+<h3>オヤコン先生</h3>
+<div class="small">K0001</div>
+<div class="status">準備中</div>
+<p>先生のプロフィールを準備しています。</p>
+<button disabled>準備中</button>
+</section>
+<section class="card">
+<div class="animal">🐸</div>
+<h3>ハロルド先生</h3>
+<div class="small">表示サンプル</div>
+<div class="status">サンプル</div>
+<p>画面確認用の先生カードです。</p>
+<button disabled>準備中</button>
+</section>
+
+</div>
+</main>
+<footer>教わった子が、いつか教える人へ。</footer>
+</body>
+</html>
