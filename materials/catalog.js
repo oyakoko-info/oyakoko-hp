@@ -10,8 +10,7 @@ window.OYAKOKO_CATALOG = {
               {
                 "title": "S4-001　大きい数・練習1（既存）",
                 "pdf": "Oyakoko_S4-001.pdf",
-                "answer": null
-              },
+                "answer": "S4-001_answers.pdf"              },
               {
                 "title": "S4-002　大きい数・基本（問題）",
                 "pdf": "S4-002.pdf",
